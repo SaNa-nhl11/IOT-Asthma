@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "author": "Antigravity AIoT",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -120,
+      "left": 150,
+      "attrs": { "temperature": "23.5", "humidity": "55" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_co2",
+      "top": 150,
+      "left": -120,
+      "attrs": { "label": "CO2 (ppm)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_aqi",
+      "top": 150,
+      "left": 150,
+      "attrs": { "label": "Air Quality (AQI)" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "dht:VCC", "red", [ "v0" ] ],
+    [ "esp:GND.1", "dht:GND", "black", [ "v0" ] ],
+    [ "esp:15", "dht:SDA", "green", [ "v0" ] ],
+    [ "esp:3V3", "pot_co2:VCC", "red", [ "v0" ] ],
+    [ "esp:GND.2", "pot_co2:GND", "black", [ "v0" ] ],
+    [ "esp:34", "pot_co2:SIG", "purple", [ "v0" ] ],
+    [ "esp:3V3", "pot_aqi:VCC", "red", [ "v0" ] ],
+    [ "esp:GND.2", "pot_aqi:GND", "black", [ "v0" ] ],
+    [ "esp:35", "pot_aqi:SIG", "orange", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
+
